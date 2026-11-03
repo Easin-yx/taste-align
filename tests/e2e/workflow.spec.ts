@@ -22,7 +22,7 @@ test("complete compare → annotate → export → import → review flow", asyn
   await page.getByRole("button", { name: "更喜欢 B · 舒缓地浮起" }).click();
   await page.getByRole("tab", { name: "材质" }).click();
   await page.screenshot({
-    path: `docs/screenshots/${info.project.name}-compare.png`,
+    path: `${process.env.CAPTURE_DOCS ? "docs/screenshots" : "test-results/screenshots"}/${info.project.name}-compare.png`,
     fullPage: true,
   });
   const sample = await page.locator(".comparison-option").nth(1).screenshot();
@@ -41,7 +41,7 @@ test("complete compare → annotate → export → import → review flow", asyn
   await page.getByRole("button", { name: "保存标记", exact: true }).click();
   await expect(page.getByRole("button", { name: /保留 · 材质/ })).toBeVisible();
   await page.screenshot({
-    path: `docs/screenshots/${info.project.name}-reference.png`,
+    path: `${process.env.CAPTURE_DOCS ? "docs/screenshots" : "test-results/screenshots"}/${info.project.name}-reference.png`,
     fullPage: true,
   });
   await page.getByRole("button", { name: "整理成设计简报" }).click();
@@ -60,7 +60,7 @@ test("complete compare → annotate → export → import → review flow", asyn
     1,
   );
   await page.screenshot({
-    path: `docs/screenshots/${info.project.name}-brief.png`,
+    path: `${process.env.CAPTURE_DOCS ? "docs/screenshots" : "test-results/screenshots"}/${info.project.name}-brief.png`,
     fullPage: true,
   });
   await page.reload();
@@ -83,7 +83,7 @@ test("complete compare → annotate → export → import → review flow", asyn
     .click();
   await page.getByLabel("哪里还不对？").fill("动作还没有停稳");
   await page.screenshot({
-    path: `docs/screenshots/${info.project.name}-review.png`,
+    path: `${process.env.CAPTURE_DOCS ? "docs/screenshots" : "test-results/screenshots"}/${info.project.name}-review.png`,
     fullPage: true,
   });
   await page.getByRole("button", { name: "看差别", exact: false }).click();

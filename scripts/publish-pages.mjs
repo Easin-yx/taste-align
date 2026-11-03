@@ -22,6 +22,25 @@ run("npm", ["run", "build"]);
 const stage = mkdtempSync(join(tmpdir(), "taste-align-pages-"));
 try {
   run("git", ["init", "-b", "gh-pages"], stage);
+  run(
+    "git",
+    [
+      "config",
+      "user.name",
+      run("git", ["config", "user.name"], root, true) ||
+        "Taste Align contributors",
+    ],
+    stage,
+  );
+  run(
+    "git",
+    [
+      "config",
+      "user.email",
+      run("git", ["config", "user.email"], root, true) || "noreply@localhost",
+    ],
+    stage,
+  );
   run("git", ["remote", "add", "origin", remote], stage);
   const exists = run(
     "git",
