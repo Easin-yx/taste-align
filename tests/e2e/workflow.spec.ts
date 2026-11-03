@@ -8,7 +8,7 @@ test("complete compare → annotate → export → import → review flow", asyn
 }, info) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("./");
   await expect(
     page.getByRole("heading", { name: "你更想触碰哪一种？" }),
   ).toBeVisible();
@@ -105,7 +105,7 @@ test("complete compare → annotate → export → import → review flow", asyn
 test("keyboard, empty states, corrupted import, mobile bounds, accessibility", async ({
   page,
 }, info) => {
-  await page.goto("/");
+  await page.goto("./");
   await expect(
     page.getByRole("heading", { name: "你更想触碰哪一种？" }),
   ).toBeVisible();
@@ -158,7 +158,7 @@ test("keyboard, empty states, corrupted import, mobile bounds, accessibility", a
 test("video note exports a captured frame and useful timestamp", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.getByRole("button", { name: "标记参考", exact: false }).click();
   await page
     .getByLabel("上传参考文件")
@@ -191,7 +191,7 @@ test("video note exports a captured frame and useful timestamp", async ({
 test("long names round-trip and one corrupt record does not hide healthy projects", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("./");
   await page.locator(".project-switcher").click();
   await page.getByRole("button", { name: "编辑当前项目" }).click();
   await page.getByLabel("项目名称", { exact: true }).fill("长".repeat(120));
@@ -234,7 +234,7 @@ test("long names round-trip and one corrupt record does not hide healthy project
 test("a slow upload merges with edits made while the file is reading", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto("./");
   const sample = await page.locator(".comparison-option").first().screenshot();
   await page.evaluate(() => {
     const original = FileReader.prototype.readAsDataURL;

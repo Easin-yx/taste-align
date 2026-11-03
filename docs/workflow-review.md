@@ -13,3 +13,7 @@
 Additional main-agent corrections: hidden upload inputs overrode native hidden display; low-contrast supporting copy; mobile access to project settings; video-frame payloads excluded from review fingerprints; phone brief shown before export controls. All synthetic test assets are project-authored.
 
 Review is not a claim of user satisfaction or physical iPhone testing. Final verification and release identity are maintained only in STATUS.md.
+
+Independent recheck: Herschel reran all 16 core tests and the five original minimal reproductions. All five blockers resolved within the reviewed scope. Main-agent browser acceptance additionally passed all ten cases in Chromium and phone WebKit, against both development and production builds.
+
+Public-site acceptance: the same ten browser workflows passed at https://easin-yx.github.io/taste-align/ after release, including image/video export and restore. No user data was used; each test ran in an isolated browser context.
