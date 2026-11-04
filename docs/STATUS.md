@@ -1,10 +1,25 @@
-# v0.1 delivery status
+# Delivery and next-step status
 
-Date: 2026-11-04
+Last status update: 2026-11-05. Runtime verification below was performed on 2026-11-04, not rerun for the documentation-only update.
+
+## Current product work
+
+- The live product remains v0.1.0; its build identity and release evidence are listed below. No application code or deployment changed in this documentation round.
+- [PRODUCT.md](../PRODUCT.md) is now the product center. [AESTHETIC-MAP.md](AESTHETIC-MAP.md) details the new two-dimensional exploration direction; [DESIGN.md](../DESIGN.md) reconciles this with the existing single-variable comparisons.
+- Direction agreed in conversation: explore a two-dimensional space through pre-authored visual examples, preserving scoped evidence for AI handoff. Suggested axes, nine-sample starting size and detailed interactions remain proposals to validate, not approved implementation facts.
+- A conversation-only nine-sample concept demo explored the interaction. It is not integrated into the public app and does not establish that the axes, examples or handoff method work for real users.
+- Next recommended deliverable: one carefully controlled map for a representative interface/component, with sample definitions and an end-to-end selection/qualification/handoff prototype. Follow the staged validation in the feature document before expanding the library. This development has not started as part of the current documentation task.
+- Outstanding: sample calibration, scope and boundary selection, combined-context confirmation, versioned map evidence in existing exports/imports, actual user comparison and physical iPhone checks. Existing project data and reference/review features must be preserved when implementing these.
+
+## Documentation verification — 2026-11-05
+
+Local Markdown link targets, table structure and patch whitespace were checked. One independent read-only reviewer (Jason) identified two interaction ambiguities: confirming a sample before its usage scope is known, and losing a hovered candidate when moving to the confirm button. The main agent resolved both in the feature/design documents and cross-checked the revised wording. Details and remaining runtime validation are in [workflow-review.md](workflow-review.md). No runtime tests or physical-device checks were performed for this documentation-only change.
+
+## Existing v0.1 delivery
 
 Implemented in a separate repository: same-content comparisons; scoped reference image/video notes with automatic video stills; portable AI brief/asset bundles; editable backup import; manual result review and stale-approval invalidation; project lifecycle; Chinese/English; local-only storage.
 
-## Verification
+## Runtime verification — 2026-11-04
 
 - Production TypeScript/Vite build: passed.
 - 16 core tests: passed, including unknowns, explicit rejection, evidence, complete bundle round-trips, invalid input, stale approvals, video stills and queued save status.

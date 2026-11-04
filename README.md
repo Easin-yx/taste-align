@@ -6,6 +6,8 @@ A local-first, open-source workspace for people who know what they like but don'
 
 [中文](README.zh-CN.md) · [Try it](https://easin-yx.github.io/taste-align/) · [Product decisions](PRODUCT.md)
 
+Product direction is maintained in the [product center](PRODUCT.md). The [two-dimensional aesthetic map proposal](docs/AESTHETIC-MAP.md) is a new design/validation direction, not a feature in the live v0.1 app. See [current delivery status](docs/STATUS.md) for implementation and verification evidence.
+
 ![The comparison workspace](docs/screenshots/desktop-chromium-compare.png)
 
 ## The complete loop

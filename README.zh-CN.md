@@ -41,4 +41,4 @@ npm run dev
 - 所有示例图形均为项目原创。上传的参考作品仍归原作者，不因导出而获得再分发许可。
 - 五组示例不涵盖全部审美方向；个人参考、明确要求和未决定的部分都会保留。
 
-MIT 开源。详见 [产品范围](PRODUCT.md)、[验证记录](docs/STATUS.md) 和 [贡献说明](CONTRIBUTING.md)。
+MIT 开源。后续方向统一从 [产品中心](PRODUCT.md) 查看，其中 [二维审美地图](docs/AESTHETIC-MAP.md) 是待验证的新方案，尚未接入在线版。实际完成情况见 [当前状态与验证记录](docs/STATUS.md)，参与方式见 [贡献说明](CONTRIBUTING.md)。

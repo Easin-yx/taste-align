@@ -16,3 +16,12 @@ The distinction is a product hypothesis, not a claim that no other tool does thi
 Automated validation checks whether user intent is captured, preserved, exported, restored and kept consistent across revisions. It cannot establish that the product saves time or improves aesthetic satisfaction for real users. Those outcomes need observation of people using it on a real project.
 
 Suggested next evaluation: give one person a short UI task; compare their original brief with the exported one; ask a second designer/AI to implement each blind; assess whether the intended differences survive and count clarification turns. Do not invent a success percentage.
+
+## 二维探索方向的补充依据 — 2026-11-05
+
+本轮只补充与新方向直接相关的两类来源，不把最初的邻近工具清单当成完整竞品调查。
+
+- [Design Taste Lab](https://github.com/vb-tyagi/design-taste-lab) 已提出用问卷、视觉探针、滑动比较、参考拆解等方式提取偏好，再形成可交给 AI 的设计说明。我们可借鉴多种证据共同确认方向；“用户与 AI 对齐审美”不是空白领域。其 README 的完整运行流程需要模型 API，演示模式使用样例；我们拟验证的是无需实时生成、以预设二维样本为入口的较小闭环。不能仅凭功能描述认定双方谁更有效。
+- [AI-Assisted Design Concept Exploration Through Character Space Construction](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.819237/full) 讨论通过两组对立形容词构造四象限，帮助探索和表达设计概念。我们借鉴用对比澄清感觉的方法；论文不证明任意词都能成为可靠坐标，也不证明我们的样本库具有测量准确度。
+
+我们的假设是：让非设计专业用户直接在可见样本之间探索，保留使用范围、原话与拒绝边界，可能比只问抽象词更容易对齐。仍须与直接描述和现有 A/B 方法比较；如果地图没有帮助，就不扩大素材制作。产品决策见 [产品中心](../PRODUCT.md)，具体实验见 [二维审美地图](AESTHETIC-MAP.md)。
