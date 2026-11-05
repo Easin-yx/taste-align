@@ -36,3 +36,12 @@ Public-site acceptance: the same ten browser workflows passed at https://easin-y
 - 已修订：产品中心、专题、设计规则和当前状态统一为视觉选择主流程；题目限定比较属性和上下文，必要时用视觉复核，原话/参考为自愿扩展。研究记录区分评价量表、参数空间和偏好选择；有限题数与题库仍属待验证建议。上次关于范围的审查仍要求数据保留范围，但不再要求用户逐题补范围。
 - 状态：已落实到文档，产品行为与有效性待验证。后续检查应覆盖零自由文字完整任务、未用于出题的新内容复核，以及真实 AI 交接，而不只检查控件可点。本轮未改业务代码、未部署、未做真机验收。
 - 独立只读审查：Carson 发现旧形态题的固定布局/字号约束被用于整个题库，会锁死空间与字体题要比较的变量；主执行者已改为逐题确定变化项，其余固定。已检查文档本地链接、表格与补丁格式；未把审查结果当作题目有效性或论文复现证据。
+
+## PLAN-01: Visual-flow development plan review — 2026-11-06
+
+Scope: planning documents only; no runtime changes, deployment or card-learning project work. Independent read-only reviewer: Noether. The main agent verified two findings and updated AESTHETIC-MAP section 10.7:
+
+- Existing saveProject in src/core/storage.ts writes directly by project ID. Future migration must protect against old open tabs overwriting newer evidence. Cross-version record isolation, delayed saves, deletion, parallel edits and rollback are now required P2/P6 checks. Code inspection confirmed the risk; no runtime reproduction or fix was performed.
+- Early human calibration and P7 previously overlapped without clear reuse rules. Version-matched evidence can now be reused; changed questions require targeted rechecks. The main agent organizes validation; unavailable people/devices remain explicit pending work and cannot be replaced by agent opinions. Engineering trial releases can proceed with these limits disclosed.
+
+Local links, table structure and patch whitespace were checked. Existing collaboration rules already cover scope and responsibility; no new approval gates added. Plan changes are recorded, their runtime effectiveness is still unverified.
