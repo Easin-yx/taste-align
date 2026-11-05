@@ -45,3 +45,11 @@ Scope: planning documents only; no runtime changes, deployment or card-learning 
 - Early human calibration and P7 previously overlapped without clear reuse rules. Version-matched evidence can now be reused; changed questions require targeted rechecks. The main agent organizes validation; unavailable people/devices remain explicit pending work and cannot be replaced by agent opinions. Engineering trial releases can proceed with these limits disclosed.
 
 Local links, table structure and patch whitespace were checked. Existing collaboration rules already cover scope and responsibility; no new approval gates added. Plan changes are recorded, their runtime effectiveness is still unverified.
+
+## QUESTIONS-01：研究支持的题目定义交付 — 2026-11-06
+
+用户本轮要求“先进行题目定义”，并要求基于已有研究继续深化。本轮仅同频文档：增加逐题规范，旧骨架表改为指向规范，产品/设计/研究/状态补齐相关入口与边界。未制作样本、改业务代码或发布。
+
+独立只读审查员 Huygens 检查研究结论与产品假设、跨题依赖、整体确认、预算和零自由文字路径，未发现阻塞本轮文档交付的实质缺口。主执行者核对可访问的原始研究/官方规范描述、链接、表格、题号和补丁格式；没有论文实验复现或真人校准。
+
+本轮保留 VISUAL-01 的要求：用户不承担解释局部喜好的负担；基准不写成偏好，复核仍用视觉选择。新增题目目前只有定义，不以审查通过声称题目有效，后续按 P1 校准。未发现需要追加 AGENTS 规则的流程问题。

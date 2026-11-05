@@ -61,3 +61,16 @@ Suggested next evaluation: give one person a short UI task; compare their origin
 | [DesignScape，O’Donovan 等，CHI 2015](https://www.dgp.toronto.edu/~donovan/design/index.html) | 区分当前布局细化与风格探索建议；启发 P4 的“附近细化/更换方向” | 图形布局建议的效果不证明我们的二维审美题有效，也不证明静态偏好等于交互好用 |
 
 阶段任务与继续条件只维护在 [专题开发计划](AESTHETIC-MAP.md#10-开发计划从研究支持到可用闭环)，实际进度只在 [STATUS.md](STATUS.md)。
+
+## P0 逐题定义补充依据 — 2026-11-06
+
+本轮新增核对作者论文摘要/全文可读段落、原始出版页与官方规范；没有复现研究，也未宣称选定参数经过实测。Schütte 2004 的出版页本次直读受限，沿用上一轮已核对的摘要并补查 2006 原始出版摘要。完整题义、推断边界与制作起点只维护在 [QUESTION-DEFINITIONS.md](QUESTION-DEFINITIONS.md)。
+
+| 来源 | 研究或规范支持什么 | 用于哪题；限制 |
+| --- | --- | --- |
+| [Schütte，2006：Developing the Space of Product Properties Supporting Kansei Engineering Procedure](https://www.jstage.jst.go.jp/article/kei1999/5/4/5_4_11/_article/-char/en) | 提出收集、选择、组织产品属性并关联语义描述的过程，在地板产品做应用研究 | P0 方法；对象领域及参与者不同，不能把其语义因素直接当 App 通用轴 |
+| [Bar / Neta，2006：Humans prefer curved visual objects](https://pubmed.ncbi.nlm.nih.gov/16913943/) | 物体轮廓尖角/曲线影响判断 | Q02 的轮廓值得研究；不证明所有用户都应选圆角，也不支持本题线宽配对和具体半径 |
+| [Palmer / Schloss，2010：An ecological valence theory of human color preference](https://pmc.ncbi.nlm.nih.gov/articles/PMC2889342/) | 提出并检验颜色偏好与相关对象的情感评价有关的理论 | Q03/Q04 关注颜色所处内容；不能仅凭颜色推断人格或永久偏好 |
+| [W3C CSS Color 4：OKLab / OKLCH](https://www.w3.org/TR/css-color-4/#specifying-oklab-oklch) | 定义明度、彩度、色相及色域处理；零彩度时色相不具作用 | Q03 分开控制变量，提供独立中性样本；属于技术表示，不是审美测量量表 |
+
+本轮深化是条件化证据、多题组合检验与可复核交接三项产品假设。二维样本数量、参数档位、题序、重测与停止规则均是执行者设计，不能冠以“论文验证”。现有 Impeccable 仅帮助组织可用性与界面约束，不作为学术证据或用户审美来源。
