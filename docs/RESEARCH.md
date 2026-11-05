@@ -24,7 +24,7 @@ Suggested next evaluation: give one person a short UI task; compare their origin
 - [Design Taste Lab](https://github.com/vb-tyagi/design-taste-lab) 已提出用问卷、视觉探针、滑动比较、参考拆解等方式提取偏好，再形成可交给 AI 的设计说明。我们可借鉴多种证据共同确认方向；“用户与 AI 对齐审美”不是空白领域。其 README 的完整运行流程需要模型 API，演示模式使用样例；我们拟验证的是无需实时生成、以预设二维样本为入口的较小闭环。不能仅凭功能描述认定双方谁更有效。
 - [AI-Assisted Design Concept Exploration Through Character Space Construction](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.819237/full) 讨论通过两组对立形容词构造四象限，帮助探索和表达设计概念。我们借鉴用对比澄清感觉的方法；论文不证明任意词都能成为可靠坐标，也不证明我们的样本库具有测量准确度。
 
-当前假设是：让非设计专业用户只通过可见样本选择，系统依据题目定义记录比较特征、范围与证据，可能比只问抽象词更容易对齐；原话仅在用户自愿提供时附带。2026-11-06 已按用户纠正取消主流程中的局部解释步骤。仍须与直接描述和现有 A/B 方法比较；如果地图没有帮助，就不扩大素材制作。产品决策见 [产品中心](../PRODUCT.md)，具体实验见 [二维审美地图](AESTHETIC-MAP.md)。
+当前假设是：让非设计专业用户通过已经搭配好的完整样本选择，系统记录整套实例、联动关系、范围与证据，可能比抽象描述或逐项参数选择更容易对齐；原话仅在用户自愿提供时附带。2026-11-06 已按用户纠正取消主流程中的局部解释步骤。仍须与直接描述和现有 A/B 方法比较；如果地图没有帮助，就不扩大素材制作。产品决策见 [产品中心](../PRODUCT.md)，具体实验见 [二维审美地图](AESTHETIC-MAP.md)。
 
 ## 视觉题与设计要素的研究核对 — 2026-11-06
 
@@ -43,9 +43,9 @@ Suggested next evaluation: give one person a short UI task; compare their origin
 
 **有依据的可行路径**：先定义有限且可还原的设计变量，让用户比较视觉结果，逐步收集偏好。研究支持继续试验这种方式；现阶段可用预设样本与规则分支，不必实时 AI 生图。
 
-**仍是产品假设**：由一组容易理解的二维题覆盖当前用途的主要审美特征，得到能指导 AI 的设计要求。没有找到可直接照用、经过验证、对所有产品都成立的完整题库。论文量表、设计系统分类和偏好推断算法承担不同工作，不能简单合并成“科学审美测验”。
+**仍是产品假设**：由少量完整方向与协调细化覆盖当前用途的主要偏好，得到能指导 AI 维持整体关系的要求。没有找到可直接照用、经过验证、对所有产品都成立的完整题库。论文量表、设计系统分类和偏好推断算法承担不同工作，不能简单合并成“科学审美测验”。
 
-需要验证的推断链为：可控参数的变化 → 用户确实看见预期差别 → 选择反映当前用途的偏好 → 多题组合与新内容中仍成立 → 接手者据此做出的结果更接近。每个箭头都可能失效；不能仅用题目完成率当作有效性证据。
+需要验证的推断链为：经质量审阅的完整方案 → 用户能看见方向差别 → 明确选择实例 → 协调细化与新内容中仍成立 → 接手者据此做出的结果更接近。多参数联动不支持反推单一因素的因果贡献。每个箭头都可能失效；不能仅用题目完成率当作有效性证据。
 
 候选参数与题目见专题第 2 节。颜色、轮廓、空间、字体/图形、材质、动效、操作反馈只是当前工作清单；不是互相完全独立的维度，也不是对艺术品感的完备量化。
 
@@ -69,8 +69,14 @@ Suggested next evaluation: give one person a short UI task; compare their origin
 | 来源 | 研究或规范支持什么 | 用于哪题；限制 |
 | --- | --- | --- |
 | [Schütte，2006：Developing the Space of Product Properties Supporting Kansei Engineering Procedure](https://www.jstage.jst.go.jp/article/kei1999/5/4/5_4_11/_article/-char/en) | 提出收集、选择、组织产品属性并关联语义描述的过程，在地板产品做应用研究 | P0 方法；对象领域及参与者不同，不能把其语义因素直接当 App 通用轴 |
-| [Bar / Neta，2006：Humans prefer curved visual objects](https://pubmed.ncbi.nlm.nih.gov/16913943/) | 物体轮廓尖角/曲线影响判断 | Q02 的轮廓值得研究；不证明所有用户都应选圆角，也不支持本题线宽配对和具体半径 |
-| [Palmer / Schloss，2010：An ecological valence theory of human color preference](https://pmc.ncbi.nlm.nih.gov/articles/PMC2889342/) | 提出并检验颜色偏好与相关对象的情感评价有关的理论 | Q03/Q04 关注颜色所处内容；不能仅凭颜色推断人格或永久偏好 |
-| [W3C CSS Color 4：OKLab / OKLCH](https://www.w3.org/TR/css-color-4/#specifying-oklab-oklch) | 定义明度、彩度、色相及色域处理；零彩度时色相不具作用 | Q03 分开控制变量，提供独立中性样本；属于技术表示，不是审美测量量表 |
+| [Bar / Neta，2006：Humans prefer curved visual objects](https://pubmed.ncbi.nlm.nih.gov/16913943/) | 物体轮廓尖角/曲线影响判断 | 旧 Q02（现 D04 内部制作）的轮廓值得研究；不证明所有用户都应选圆角，也不支持本题线宽配对和具体半径 |
+| [Palmer / Schloss，2010：An ecological valence theory of human color preference](https://pmc.ncbi.nlm.nih.gov/articles/PMC2889342/) | 提出并检验颜色偏好与相关对象的情感评价有关的理论 | 旧 Q03/Q04（现 D02 完整配色）关注颜色所处内容；不能仅凭颜色推断人格或永久偏好 |
+| [W3C CSS Color 4：OKLab / OKLCH](https://www.w3.org/TR/css-color-4/#specifying-oklab-oklch) | 定义明度、彩度、色相及色域处理；零彩度时色相不具作用 | 内部配方分开表示颜色变量；不作为用户逐项选色题；属于技术表示，不是审美测量量表 |
 
 本轮深化是条件化证据、多题组合检验与可复核交接三项产品假设。二维样本数量、参数档位、题序、重测与停止规则均是执行者设计，不能冠以“论文验证”。现有 Impeccable 仅帮助组织可用性与界面约束，不作为学术证据或用户审美来源。
+
+## 完整方案优先的修订依据 — 2026-11-06
+
+用户指出未受设计训练的人不应负责把独立选择的颜色/属性组合协调，并同意调整题目。依此将专业质量审阅、完整方案选择和条件化推断分开；这是用户确认的产品原则，不是新增论文结论。已有来源继续支持研究方法，不能用它们声称完整配方必然优于逐参数方案。
+
+NIST 的控制变量方法留在内部校准；用户面对多参数协调变体时，答案只说明偏好这一完整实例及条件。DesignScape 的方向探索/细化区分用于新 D01–D05；VisAWI 不变成好坏风格坐标；DesignPref 不支持自动把整套认可拆成所有零件的独立偏好。具体题序与质量门槛以 [v0.2 题目方案](QUESTION-DEFINITIONS.md) 为准，旧 Q/X 定义只留版本历史。
