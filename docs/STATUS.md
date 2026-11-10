@@ -1,8 +1,10 @@
 # Delivery and next-step status
 
-Last status update: 2026-11-06. Runtime verification below was performed on 2026-11-04, not rerun for the documentation-only updates.
+Last status update: 2026-11-10. Runtime verification below was performed on 2026-11-04, not rerun for the documentation-only updates.
 
 ## Current product work
+
+- The 2026-11-10 documentation round defines [DESIGN-HANDOFF.md](DESIGN-HANDOFF.md): existing bundle filenames retained; requirement provenance/strength, recipes, question-to-evidence mapping, review conditions and a fictional text example specified. No new exporter, schema, skill, samples, runtime tests or deployment in this round. The example is not a renderable or verified design. P1 must prepare recipes and requirement-to-evidence links alongside samples, then check an actual recipient handoff using the D01→D02→C01 bundle.
 
 - The live product remains v0.1.0; its build identity and release evidence are listed below. No application code or deployment changed in this documentation round.
 - [PRODUCT.md](../PRODUCT.md) is now the product center. [AESTHETIC-MAP.md](AESTHETIC-MAP.md) details the new two-dimensional exploration direction; [DESIGN.md](../DESIGN.md) reconciles this with the existing single-variable comparisons.
@@ -12,6 +14,10 @@ Last status update: 2026-11-06. Runtime verification below was performed on 2026
 - The next planned P1 deliverable is a small set of complete D01 directions plus coordinated D02 variants for one direction, then the internal D01→D02→C01 and existing save/export/import/review path. The former Q05 material-grid-first plan is superseded. This round changed documentation only; no new samples, application code or deployment. Question document v0.2 is not a new runtime release.
 - Outstanding: validated question/sample definitions, bounded visual follow-ups, combined-context confirmation, versioned question evidence in existing exports/imports, zero-free-text task validation, actual user comparison and physical iPhone checks. Existing project data and reference/review features must be preserved when implementing these.
 - Research now includes Kansei Engineering, Sequential Gallery, VisAWI, experimental-design methods, DesignPref, DesignScape, LabintheWild's website-aesthetics work, Apple motion guidance and WCAG. These support testing the approach, not a validated universal UI-taste questionnaire. Source descriptions and limits are in [RESEARCH.md](RESEARCH.md).
+
+## Design-handoff specification verification — 2026-11-10
+
+Independent read-only reviewer Hume reported no substantive document-level issue in scope, status, fictional evidence or whole-instance inference. Main-agent checks passed for local links, table columns, UTF-8, all seven question mappings and patch whitespace. Existing export filenames were verified in src/core/export.ts. No runtime tests, real handoff trial, sample rendering or deployment occurred. The next evidence needed is a real selected sample plus recipe and recipient implementation, as specified in DESIGN-HANDOFF.md.
 
 ## Whole-scheme question revision verification (v0.2 spec) — 2026-11-06
 

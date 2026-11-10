@@ -62,3 +62,9 @@ Local links, table structure and patch whitespace were checked. Existing collabo
 - 后续验收：既检查候选协调，也检查作者口味过窄、非设计用户能否理解、换内容后是否仍成立，以及接手 AI 是否错误拆解整体偏好。实际状态继续只在 STATUS 维护，不新增审批步骤或重复协作规则。
 
 独立只读审查员 Laplace 发现专题第 10 节仍将后续开发写成“本轮目标”，可能混淆本次文档任务与实现范围；主执行者已明确改为后续实施阶段，并保留原开发计划。其余未报告实质文档缺口。本地链接、表格和补丁格式检查通过；这不代表候选已制作、审美有效性已验证或线上已更新。
+
+## HANDOFF-01: Executable design agreement specification — 2026-11-10
+
+User approved defining the output format and checking how questions supply its evidence. Added DESIGN-HANDOFF.md and linked existing product/design/question/plan/status documents. Existing export names are reused; project-specific facts remain separate from a future optional execution skill. Requirement provenance and strength, whole-instance recipes, unknowns, versions and review evidence are distinguished. A fictional text example is explicitly not a selected or rendered design.
+
+Independent read-only reviewer Hume found no substantive issue in this document scope. Main-agent checks covered local links, tables, UTF-8, seven question mappings, existing exporter filenames and patch whitespace. No runtime, migration, deployment, skill installation, real-user or real handoff validation took place. No additional collaboration rule or user approval gate was needed. Runtime status remains in STATUS.md.
