@@ -68,3 +68,8 @@ Local links, table structure and patch whitespace were checked. Existing collabo
 User approved defining the output format and checking how questions supply its evidence. Added DESIGN-HANDOFF.md and linked existing product/design/question/plan/status documents. Existing export names are reused; project-specific facts remain separate from a future optional execution skill. Requirement provenance and strength, whole-instance recipes, unknowns, versions and review evidence are distinguished. A fictional text example is explicitly not a selected or rendered design.
 
 Independent read-only reviewer Hume found no substantive issue in this document scope. Main-agent checks covered local links, tables, UTF-8, seven question mappings, existing exporter filenames and patch whitespace. No runtime, migration, deployment, skill installation, real-user or real handoff validation took place. No additional collaboration rule or user approval gate was needed. Runtime status remains in STATUS.md.
+
+
+## 2026-11-16 · 可体验基础版本
+
+交付前独立只读审查发现，用户只复制简报时，接手者拿不到简报引用的画面。现已将界面所用的 PNG 随样稿和配方一起导出，复制提示说明要附带哪些文件。交接页直接显示确认样稿，跳过写作「暂不选方向」。浏览器用例逐字节核对所见图片与下载内容；这验证交接准确性，实际节约返工仍需另测。

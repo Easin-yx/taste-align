@@ -9,6 +9,7 @@ test("complete compare → annotate → export → import → review flow", asyn
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("./");
+  await page.getByRole("button", { name: "逐项对照" }).click();
   await expect(
     page.getByRole("heading", { name: "你更想触碰哪一种？" }),
   ).toBeVisible();
@@ -64,6 +65,7 @@ test("complete compare → annotate → export → import → review flow", asyn
     fullPage: true,
   });
   await page.reload();
+  await page.getByRole("button", { name: "逐项对照" }).click();
   await expect(
     page.getByRole("button", { name: "更喜欢 B · 透光的磨砂" }),
   ).toHaveAttribute("aria-pressed", "true");
@@ -106,6 +108,7 @@ test("keyboard, empty states, corrupted import, mobile bounds, accessibility", a
   page,
 }, info) => {
   await page.goto("./");
+  await page.getByRole("button", { name: "逐项对照" }).click();
   await expect(
     page.getByRole("heading", { name: "你更想触碰哪一种？" }),
   ).toBeVisible();
@@ -235,6 +238,7 @@ test("a slow upload merges with edits made while the file is reading", async ({
   page,
 }) => {
   await page.goto("./");
+  await page.getByRole("button", { name: "逐项对照" }).click();
   const sample = await page.locator(".comparison-option").first().screenshot();
   await page.evaluate(() => {
     const original = FileReader.prototype.readAsDataURL;

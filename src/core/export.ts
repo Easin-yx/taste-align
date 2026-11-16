@@ -4,12 +4,21 @@ import {
   dimensions,
   dimensionCopy,
   rulesFor,
+  schemeRuleId,
   tr,
   validateProject,
   type Asset,
   type Locale,
   type Project,
 } from "./model";
+import { sampleHTML, recipeText } from "./directions";
+import { sampleImage } from "./sample-image";
+
+const sampleEvidence = (locale: Locale) =>
+  locale === "zh"
+    ? "C01 完整样本确认。查看[原始截图](preview.png)和[离线样本](preview.html)，按[作者配方](RECIPE.md)逐项对照。配方数值是还原起点，用户确认的是整体效果。"
+    : "C01 whole-sample confirmation. Compare the [captured screen](preview.png) and [offline sample](preview.html) with the [author’s recipe](RECIPE.md). Recipe values are implementation starting points. The confirmation covers the overall composition.";
+
 export function assetPath(a: Asset) {
   return `assets/${a.id.replace(/[^a-zA-Z0-9-]/g, "_")}.${{ "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "video/mp4": "mp4", "video/webm": "webm" }[a.type]}`;
 }
@@ -39,6 +48,10 @@ export function makeBrief(p: Project, locale: Locale = "zh"): string {
     "",
     `## ${zh ? "已表达的设计要求" : "Expressed design requirements"}`,
   ];
+  if (!p.scheme)
+    lines.push(
+      zh ? "完整样本方向未定。" : "Whole-sample direction is undecided.",
+    );
   if (!rules.length)
     lines.push(
       zh
@@ -47,6 +60,7 @@ export function makeBrief(p: Project, locale: Locale = "zh"): string {
     );
   rules.forEach((r, i) => {
     lines.push("", `### ${i + 1}. ${r.title} [${r.id}]`, safe(r.text));
+    if (r.id === schemeRuleId) lines.push(sampleEvidence(locale));
     if (r.reason)
       lines.push(`${zh ? "用户原话" : "User’s reason"}: ${safe(r.reason)}`);
     if (r.dimension)
@@ -80,17 +94,17 @@ export function makeBrief(p: Project, locale: Locale = "zh"): string {
         );
     }
   });
-  lines.push("", `## ${zh ? "仍然开放的决定" : "Still open"}`);
-  for (const d of dimensions)
-    if (!p.choices[d] || p.choices[d]?.value === "neither")
-      lines.push(
-        `- ${tr(dimensionCopy[d].title, locale)}: ${p.choices[d]?.value === "neither" ? (zh ? "两个示例都不合适，不得擅自采用其中之一。" : "Neither sample fits. Do not silently pick one.") : zh ? "未选择，不能推断为喜欢默认值。" : "Not chosen; do not infer approval of a default."} ${safe(p.choices[d]?.reason || "")}`,
-      );
-  if (!p.references.length)
+  const open = dimensions.filter(
+    (d) => !p.choices[d] || p.choices[d]?.value === "neither",
+  );
+  if (open.length)
     lines.push(
-      zh
-        ? "- 暂无个人参考资产：这些只是对有限示例的选择，不代表完整审美方向。"
-        : "- No personal reference assets. These limited sample choices do not establish a complete art direction.",
+      "",
+      `## ${zh ? "仍然开放的单项决定" : "Still open for individual dimensions"}`,
+    );
+  for (const d of open)
+    lines.push(
+      `- ${tr(dimensionCopy[d].title, locale)}: ${p.choices[d]?.value === "neither" ? (zh ? "两个示例都不合适，不得擅自采用其中之一。" : "Neither sample fits. Do not silently pick one.") : zh ? "未选择，不能推断为喜欢默认值。" : "Not chosen; do not infer approval of a default."} ${safe(p.choices[d]?.reason || "")}`,
     );
   lines.push(
     "",
@@ -117,7 +131,9 @@ export function makeReview(p: Project, locale: Locale): string {
       const a = p.references.find((a) => a.id === r.assetId);
       const evidence = a
         ? `\n  ${zh ? "参考" : "Reference"}: ${assetPath(a)} · ${r.note?.aspect}${r.note?.x !== undefined ? ` · x=${Math.round(r.note.x * 100)}%, y=${Math.round((r.note.y || 0) * 100)}%` : ""}${r.note?.time !== undefined ? ` · ${r.note.time.toFixed(2)}s` : ""}`
-        : "";
+        : r.id === schemeRuleId
+          ? `\n  ${sampleEvidence(locale)}`
+          : "";
       return `- [${v?.state === "pass" ? "x" : " "}] ${r.title} [${r.id}]: ${safe(r.text)}${r.reason ? `\n  ${zh ? "用户原话" : "User’s reason"}: ${safe(r.reason)}` : ""}${evidence}\n  ${v ? (v.state === "pass" ? (zh ? "人工确认符合" : "Manually accepted") : zh ? "需要修改" : "Needs change") : zh ? "未核对（或要求/稿件已变）" : "Not reviewed (or stale)"}${v?.comment ? `: ${safe(v.comment)}` : ""}`;
     }),
     "",
@@ -126,18 +142,19 @@ export function makeReview(p: Project, locale: Locale): string {
       : "This is a human checklist, not automated visual analysis. Unreviewed items are not accepted.",
   ].join("\n");
 }
+function dataURLBytes(data: string) {
+  return Uint8Array.from(atob(data.split(",")[1]), (c) => c.charCodeAt(0));
+}
 export function makeArchive(p: Project, locale: Locale): Uint8Array {
   const assets = [...p.references, ...(p.result ? [p.result] : [])];
   const files: Record<string, Uint8Array> = {};
   for (const a of assets) {
-    const b = atob(a.data.split(",")[1]);
-    files[assetPath(a)] = Uint8Array.from(b, (c) => c.charCodeAt(0));
+    files[assetPath(a)] = dataURLBytes(a.data);
   }
   const notes = p.notes.map((n) => {
     if (!n.frame) return n;
     const path = `assets/${n.id.replace(/[^a-zA-Z0-9-]/g, "_")}-frame.jpg`;
-    const b = atob(n.frame.split(",")[1]);
-    files[path] = Uint8Array.from(b, (c) => c.charCodeAt(0));
+    files[path] = dataURLBytes(n.frame);
     return { ...n, frame: `bundle:${path}` };
   });
   const portable = {
@@ -151,13 +168,21 @@ export function makeArchive(p: Project, locale: Locale): Uint8Array {
       ? { ...p.result, data: `bundle:${assetPath(p.result)}` }
       : undefined,
   };
+  if (p.scheme) {
+    const { direction, palette } = p.scheme;
+    files["preview.png"] = dataURLBytes(sampleImage(direction, palette));
+    files["preview.html"] = strToU8(sampleHTML(direction, palette));
+    files["RECIPE.md"] = strToU8(recipeText(direction, palette, locale));
+  }
   files["project.json"] = strToU8(JSON.stringify(portable, null, 2));
   files["DESIGN_BRIEF.md"] = strToU8(makeBrief(p, locale));
   files["REVIEW.md"] = strToU8(makeReview(p, locale));
-  files["START_HERE.md"] = strToU8(
+  const guide =
     locale === "zh"
       ? "# 交给 AI\n\n将此文件夹放入项目，让 AI 读取 DESIGN_BRIEF.md 和 assets/ 中引用的图片/视频。网页聊天可上传简报及相关图片。视频不受支持时，先看 assets/ 中的 -frame.jpg 截图；静态截图不能证明动效，不要假装已经看过视频。\n\nproject.json 可连同整个 ZIP 导回 Taste Align，作为可编辑备份。参考资料仍属于原权利人，导出不会自动获得再分发许可。\n\n这是本地整理工具，没有向任何 AI 供应商发送资料。"
-      : "# Hand off to your AI\n\nPlace this folder in your project. Ask your AI to read DESIGN_BRIEF.md and inspect the referenced assets. For chat tools, attach the brief and relevant images. If video is unsupported, inspect the exported -frame.jpg snapshot. Static frames cannot prove motion; do not pretend the video was inspected.\n\nImport this entire ZIP into Taste Align to restore an editable copy. Reference rights remain with their owners. No data has been sent to any AI provider.",
+      : "# Hand off to your AI\n\nPlace this folder in your project. Ask your AI to read DESIGN_BRIEF.md and inspect the referenced assets. For chat tools, attach the brief and relevant images. If video is unsupported, inspect the exported -frame.jpg snapshot. Static frames cannot prove motion; do not pretend the video was inspected.\n\nImport this entire ZIP into Taste Align to restore an editable copy. Reference rights remain with their owners. No data has been sent to any AI provider.";
+  files["START_HERE.md"] = strToU8(
+    p.scheme ? `${guide}\n\n${sampleEvidence(locale)}\n` : guide,
   );
   return zipSync(files, { level: 3 });
 }

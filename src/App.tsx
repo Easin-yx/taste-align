@@ -48,6 +48,7 @@ import { createSaveQueue } from "./core/save-queue";
 import { download } from "./core/media";
 import { readArchive } from "./core/export";
 import { Dialog } from "./components/Dialog";
+import { DirectionStudio } from "./components/DirectionStudio";
 import { Specimen, ReplayButton } from "./components/Specimen";
 import { References } from "./components/References";
 import { Handoff, Review } from "./components/Handoff";
@@ -79,6 +80,7 @@ export default function App() {
     "saved",
   );
   const [step, setStep] = useState<Step>("compare");
+  const [compareMode, setCompareMode] = useState<"map" | "detail">("map");
   const [dimension, setDimension] = useState<Dimension>("material");
   const [replay, setReplay] = useState(0);
   const [dialog, setDialog] = useState<
@@ -364,7 +366,7 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
             >
-              {zh ? "开源 · v0.1" : "Open source · v0.1"}
+              {zh ? "开源 · v0.2" : "Open source · v0.2"}
               <ArrowRight size={13} />
             </a>
           </div>
@@ -419,6 +421,35 @@ export default function App() {
             </div>
           )}
           {step === "compare" && (
+            <div
+              className="compare-modes"
+              role="group"
+              aria-label={zh ? "对照方式" : "Comparison mode"}
+            >
+              <button
+                aria-pressed={compareMode === "map"}
+                onClick={() => setCompareMode("map")}
+              >
+                {zh ? "整体方向" : "Overall direction"}
+              </button>
+              <button
+                aria-pressed={compareMode === "detail"}
+                onClick={() => setCompareMode("detail")}
+              >
+                {zh ? "逐项对照" : "Compare details"}
+              </button>
+            </div>
+          )}
+          {step === "compare" && compareMode === "map" && (
+            <DirectionStudio
+              key={p.id}
+              project={p}
+              locale={locale}
+              commit={(scheme) => update((current) => ({ ...current, scheme }))}
+              handoff={() => goto("brief")}
+            />
+          )}
+          {step === "compare" && compareMode === "detail" && (
             <>
               <div className="section-heading">
                 <div>
@@ -861,8 +892,8 @@ export default function App() {
             <ol>
               <li>
                 {zh
-                  ? "看差别：同内容只改一个方面；可以都不选。"
-                  : "Compare: one difference at a time. Neither is a valid answer."}
+                  ? "看差别：先比较整页，再试配色。也可以逐项比较或跳过。"
+                  : "Compare whole pages, try palettes, or explore individual details. You can skip any choice."}
               </li>
               <li>
                 {zh

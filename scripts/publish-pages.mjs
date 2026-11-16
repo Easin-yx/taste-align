@@ -1,5 +1,11 @@
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, cpSync, writeFileSync, rmSync } from "node:fs";
+import {
+  readFileSync,
+  mkdtempSync,
+  cpSync,
+  writeFileSync,
+  rmSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 const root = process.cwd();
@@ -58,7 +64,12 @@ try {
   writeFileSync(
     join(stage, "release.json"),
     JSON.stringify(
-      { version: "0.1.0", commit: sha, builtAt: new Date().toISOString() },
+      {
+        version: JSON.parse(readFileSync(join(root, "package.json"), "utf8"))
+          .version,
+        commit: sha,
+        builtAt: new Date().toISOString(),
+      },
       null,
       2,
     ),

@@ -1,4 +1,10 @@
 import { z } from "zod";
+import {
+  directionIds,
+  directionLabel,
+  paletteIds,
+  paletteLabel,
+} from "./directions";
 
 export type Locale = "zh" | "en";
 export type Dimension = "material" | "color" | "space" | "shape" | "motion";
@@ -77,6 +83,13 @@ export const projectSchema = z.object({
   platform: z.enum(["mobile", "web", "both"]),
   createdAt: z.string(),
   updatedAt: z.string(),
+  scheme: z
+    .object({
+      version: z.literal(1),
+      direction: z.enum(directionIds),
+      palette: z.enum(paletteIds),
+    })
+    .optional(),
   choices: z.object({
     material: choiceSchema.optional(),
     color: choiceSchema.optional(),
@@ -214,6 +227,8 @@ export type Rule = {
   note?: Note;
   dimension?: Dimension;
 };
+// A colon keeps this ID outside the name space accepted for user annotation IDs.
+export const schemeRuleId = "scheme:confirmed";
 export function rulesFor(p: Project, locale: Locale): Rule[] {
   const rules: Rule[] = dimensions.flatMap((d) => {
     const c = p.choices[d];
@@ -235,6 +250,20 @@ export function rulesFor(p: Project, locale: Locale): Rule[] {
       },
     ];
   });
+  if (p.scheme) {
+    const { direction, palette, version } = p.scheme;
+    const label = `${directionLabel(direction, locale)} / ${paletteLabel(palette, locale)} (v${version})`;
+    rules.unshift({
+      id: schemeRuleId,
+      title: locale === "zh" ? "已确认的完整样本" : "Confirmed whole sample",
+      text:
+        locale === "zh"
+          ? `手机展览导览采用「${label}」作为整体还原目标。用同一内容对照信息层级、图文布局与配色关系，允许真实内容换行和滚动。其他页面与终端需另行核对。`
+          : `Use ${label} as the overall target for the mobile exhibition guide. Compare hierarchy, image and text layout, and palette relationships with the same content. Allow real content to wrap and scroll. Other pages and platforms require separate review.`,
+      reason: "",
+      kind: "choice",
+    });
+  }
   for (const n of p.notes)
     if (p.references.some((a) => a.id === n.assetId))
       rules.push({
@@ -284,13 +313,13 @@ export function reviewFingerprint(p: Project, rule: Rule) {
         time: rule.note.time,
       }
     : undefined;
-  return JSON.stringify([
-    p.result?.id,
-    p.goal,
-    p.platform,
-    rule.id,
-    rule.dimension ? p.choices[rule.dimension] : note || rule.text,
-  ]);
+  const evidence =
+    rule.id === schemeRuleId
+      ? [p.scheme?.version, p.scheme?.direction, p.scheme?.palette]
+      : rule.dimension
+        ? p.choices[rule.dimension]
+        : note || rule.text;
+  return JSON.stringify([p.result?.id, p.goal, p.platform, rule.id, evidence]);
 }
 export function currentReview(p: Project, r: Rule) {
   const v = p.reviews[r.id];

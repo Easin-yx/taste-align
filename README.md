@@ -2,19 +2,19 @@
 
 **Turn “make it feel right” into design direction an AI can act on.**
 
-A local-first, open-source workspace for people who know what they like but don't speak design jargon. Compare one visual difference at a time, pin what matters in your own references, and export a brief **with its evidence**. Bring the next design back and review against the same requirements.
+A local-first, open-source workspace for people who know what they like but don't speak design jargon. Compare complete screens and coordinated palettes, pin what matters in your own references, and export a brief **with its evidence**. Bring the next design back and review against the same requirements.
 
 [中文](README.zh-CN.md) · [Try it](https://easin-yx.github.io/taste-align/) · [Product decisions](PRODUCT.md)
 
-Product direction is maintained in the [product center](PRODUCT.md). The [two-dimensional aesthetic map proposal](docs/AESTHETIC-MAP.md) is a new design/validation direction, not a feature in the live v0.1 app. See [current delivery status](docs/STATUS.md) for implementation and verification evidence.
+Product direction is maintained in the [product center](PRODUCT.md). The [visual map](docs/AESTHETIC-MAP.md) begins with four complete mobile exhibition guides. See [current delivery status](docs/STATUS.md) for implementation and verification evidence.
 
-![The comparison workspace](docs/screenshots/desktop-chromium-compare.png)
+![The comparison workspace](docs/screenshots/direction-map.png)
 
 ## The complete loop
 
-1. **Compare** — five working same-content comparisons: material, color temperature, density, shape and motion. Choose A, B, neither, or skip. Add your own reason.
+1. **Compare** — browse four whole-page designs, try three palettes, and explicitly confirm a sample. For detail comparisons, explore material, color temperature, density, shape and motion. Choose A, B, neither, or skip. Add your own reason.
 2. **Point** — upload screenshots or short videos; mark a position or timestamp. Specify what to borrow, preserve, or avoid, and only the aspect you mean.
-3. **Hand off** — download a ZIP containing `DESIGN_BRIEF.md`, original references, exact note locations, `REVIEW.md`, an editable `project.json`, and captured JPEG frames for video notes.
+3. **Hand off** — download a ZIP containing `DESIGN_BRIEF.md`, a standalone preview.html and RECIPE.md for a confirmed scheme, original references, exact note locations, `REVIEW.md`, an editable `project.json`, and captured JPEG frames for video notes.
 4. **Review** — upload the result and mark requirements as matching or needing changes. Editing a requirement or replacing the result makes old approval stale.
 
 No account. No API key. No model call. No image uploaded to a server. Chinese and English interfaces. Works on mobile and desktop browsers.

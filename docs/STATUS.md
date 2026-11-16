@@ -1,19 +1,18 @@
 # Delivery and next-step status
 
-Last status update: 2026-11-10. Runtime verification below was performed on 2026-11-04, not rerun for the documentation-only updates.
+## v0.2.0 · 2026-11-16
 
-## Current product work
+The main comparison workspace now opens on four complete versions of the same mobile exhibition guide. All four use the same original Paper Court artwork and content. Each has three coordinated palettes. Exploring a candidate is temporary. Only final confirmation attaches the whole sample to the current project. Users can skip, withdraw, switch to the earlier detail comparisons, export, restore, and review.
 
-- The 2026-11-10 documentation round defines [DESIGN-HANDOFF.md](DESIGN-HANDOFF.md): existing bundle filenames retained; requirement provenance/strength, recipes, question-to-evidence mapping, review conditions and a fictional text example specified. No new exporter, schema, skill, samples, runtime tests or deployment in this round. The example is not a renderable or verified design. P1 must prepare recipes and requirement-to-evidence links alongside samples, then check an actual recipient handoff using the D01→D02→C01 bundle.
+A confirmed bundle contains the exact displayed PNG, the offline HTML specimen, the author's recipe, the brief and an editable project. The confirmed scope is this mobile exhibition screen. A choice does not establish an independent preference for every visual parameter or validate motion, other content or another product. Project-wide preferences and other references can still be specified separately.
 
-- The live product remains v0.1.0; its build identity and release evidence are listed below. No application code or deployment changed in this documentation round.
-- [PRODUCT.md](../PRODUCT.md) is now the product center. [AESTHETIC-MAP.md](AESTHETIC-MAP.md) details the new two-dimensional exploration direction; [DESIGN.md](../DESIGN.md) reconciles this with the existing single-variable comparisons.
-- Direction clarified on 2026-11-06: the normal flow must work through visual choices alone. Authored questions define compared attributes and context; users should not have to explain which part they liked or write reasons. Existing free-text/reference features remain optional. Suggested axes, sample counts and follow-up budgets remain proposals to validate.
-- A conversation-only nine-sample concept demo explored the interaction. It is not integrated into the public app and does not establish that the axes, examples or handoff method work for real users.
-- P0 has been revised to [QUESTION-DEFINITIONS.md v0.2](QUESTION-DEFINITIONS.md): D01 whole-direction choice, D02 complete palettes, D03 reading/layout, D04 surface/space, D05 task motion, R01 transfer and C01 confirmation. The six parameter-led Q questions and X extensions are superseded as the default flow; prior evidence retains its original meaning. The author owns coordinated candidate quality; users choose whole instances, not independently approved component values.
-- The next planned P1 deliverable is a small set of complete D01 directions plus coordinated D02 variants for one direction, then the internal D01→D02→C01 and existing save/export/import/review path. The former Q05 material-grid-first plan is superseded. This round changed documentation only; no new samples, application code or deployment. Question document v0.2 is not a new runtime release.
-- Outstanding: validated question/sample definitions, bounded visual follow-ups, combined-context confirmation, versioned question evidence in existing exports/imports, zero-free-text task validation, actual user comparison and physical iPhone checks. Existing project data and reference/review features must be preserved when implementing these.
-- Research now includes Kansei Engineering, Sequential Gallery, VisAWI, experimental-design methods, DesignPref, DesignScape, LabintheWild's website-aesthetics work, Apple motion guidance and WCAG. These support testing the approach, not a validated universal UI-taste questionnaire. Source descriptions and limits are in [RESEARCH.md](RESEARCH.md).
+Local production build: 28 unit tests and 14 desktop Chromium / phone-sized WebKit browser workflows passed, including exact preview-to-export PNG equivalence, cancellation, reload and withdrawal. All twelve scheme variants round-trip through the bundle.
+
+**Next validation:** give the same new screen task to an independent recipient with and without the handoff. Compare the results blind, record which is closer and how many corrections it needs. Real-user value, physical iPhone use and cross-content transfer remain unverified. Further map questions and motion are pending.
+
+## Prior specification work (through 2026-11-10)
+
+The question definitions, proposed extensions and research are maintained in [QUESTION-DEFINITIONS.md](QUESTION-DEFINITIONS.md), [AESTHETIC-MAP.md](AESTHETIC-MAP.md) and [RESEARCH.md](RESEARCH.md). The following verification notes describe earlier rounds.
 
 ## Design-handoff specification verification — 2026-11-10
 

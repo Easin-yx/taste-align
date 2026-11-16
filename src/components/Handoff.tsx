@@ -24,6 +24,7 @@ import {
 } from "../core/model";
 import { makeArchive, makeBrief, makeReview } from "../core/export";
 import { download, readAsset } from "../core/media";
+import { SampleView } from "./DirectionStudio";
 import { AssetView } from "./References";
 
 export async function copyText(text: string) {
@@ -87,8 +88,8 @@ export function Handoff({
       await copyText(makeBrief(p, locale));
       notify(
         zh
-          ? "简报已复制；有图片时请同时提供参考包。"
-          : "Brief copied. Include reference assets too.",
+          ? "简报已复制。有确认样稿时，请同时附上包里的 preview.png 和 RECIPE.md。"
+          : "Brief copied. Attach preview.png and RECIPE.md for a confirmed sample.",
       );
     } catch {
       download(
@@ -109,11 +110,7 @@ export function Handoff({
           <span className="eyebrow">
             03 / {zh ? "带着证据交接" : "HAND OFF WITH EVIDENCE"}
           </span>
-          <h1>
-            {zh
-              ? "现在，你们有了共同语言。"
-              : "Now you have a shared language."}
-          </h1>
+          <h1>{zh ? "交给 AI 的设计简报" : "Your AI design brief"}</h1>
           <p>
             {zh
               ? "下面只记录你表达过的偏好。未选择的部分，会诚实地留白。"
@@ -220,22 +217,28 @@ export function Handoff({
           </details>
         </section>
         <aside className="delivery-aside">
-          <div className="bundle-illustration" aria-hidden="true">
-            <div className="bundle-sheet back" />
-            <div className="bundle-sheet front">
-              <span>
-                YOUR
-                <br />
-                TASTE.
-              </span>
-              <i />
-              <i />
-              <i />
-              <div className="bundle-seal">
-                <Check size={21} />
+          {p.scheme ? (
+            <div className="handoff-sample">
+              <SampleView {...p.scheme} locale={locale} />
+            </div>
+          ) : (
+            <div className="bundle-illustration" aria-hidden="true">
+              <div className="bundle-sheet back" />
+              <div className="bundle-sheet front">
+                <span>
+                  YOUR
+                  <br />
+                  TASTE.
+                </span>
+                <i />
+                <i />
+                <i />
+                <div className="bundle-seal">
+                  <Check size={21} />
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <h2>{zh ? "带走你的审美依据" : "Take your taste with you"}</h2>
           <p>
             {zh
@@ -281,7 +284,7 @@ export function Handoff({
             </ol>
             <p>
               {zh
-                ? "网页聊天也可直接上传简报与图片。不要只传简报而遗漏图片。"
+                ? "在聊天里用时，上传简报和引用的图片。有确认样稿时，请一并附上 preview.png 与 RECIPE.md。"
                 : "For chat tools, attach the brief and images together."}
             </p>
           </div>
@@ -451,16 +454,14 @@ export function Review({
                   asset={ref}
                   notes={p.notes.filter((n) => n.assetId === ref.id)}
                   onNote={(n) =>
-                    document
-                      .getElementById(`review-${n.id}`)
-                      ?.scrollIntoView({
-                        behavior: window.matchMedia(
-                          "(prefers-reduced-motion: reduce)",
-                        ).matches
-                          ? "instant"
-                          : "smooth",
-                        block: "center",
-                      })
+                    document.getElementById(`review-${n.id}`)?.scrollIntoView({
+                      behavior: window.matchMedia(
+                        "(prefers-reduced-motion: reduce)",
+                      ).matches
+                        ? "instant"
+                        : "smooth",
+                      block: "center",
+                    })
                   }
                 />
               ) : (
